@@ -18,5 +18,6 @@ from django.contrib import admin
 from lists import views
 
 urlpatterns = [
-   url(r'^$', views.home_page, name='home')
+   url(r'^$', views.home_page, name='home'),
+   url(r'^lists/mi-lista-chingona/$', views.view_list, name='view-list',)
 ]
