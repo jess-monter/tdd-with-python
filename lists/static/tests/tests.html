@@ -21,17 +21,21 @@
 
         <script>
 
-            console.log("quinit tests start");
-
             QUnit.test("errors should be hidden on key press", function(assert) {
-                initialize();
+                window.Superlists.initialize();
                 $('input[name="text"]').trigger('keypress');
                 assert.equal($('.has-error').is(':visible'), false);
             });
 
             QUnit.test("errors aren't hidden if there is no key press", function(assert) {
-                initialize();
+                window.Superlists.initialize();
                 assert.equal($('.has-error').is(':visible'), true);
+            });
+
+            QUnit.test("errors are hidden on focus of the input", function(assert) {
+                window.Superlists.initialize();
+                $('input[name="text"]').trigger('focus');
+                assert.equal($('.has-error').is(':visible'), false);
             });
 
         </script>
