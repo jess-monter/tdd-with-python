@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from lists.models import Item
 
@@ -36,6 +37,6 @@ class ExistingListItemForm(ItemForm):
     def validate_unique(self):
         try:
             self.instance.validate_unique()
-        except forms.ValidationError as e:
+        except ValidationError as e:
             e.error_dict = {'text': [DUPLICATE_ITEM_ERROR]}
             self._update_errors(e)
