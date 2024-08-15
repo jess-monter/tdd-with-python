@@ -134,3 +134,6 @@ geckodriver.log
 
 # Editors
 .idea
+
+# OS Stuff
+.DS_Store
