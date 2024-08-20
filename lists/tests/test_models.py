@@ -60,7 +60,6 @@ class ListModelTest(TestCase):
         list_ = List.objects.create()
         self.assertEqual(list_.get_absolute_url(), f'/lists/{list_.id}/')
 
-
     def test_create_new_creates_list_and_first_item(self):
         List.create_new(first_item_text='new item text')
         new_item = Item.objects.first()
@@ -90,3 +89,14 @@ class ListModelTest(TestCase):
         Item.objects.create(list=list_, text='first item')
         Item.objects.create(list=list_, text='second item')
         self.assertEqual(list_.name, 'first item')
+
+    def test_list_shared_with(self):
+        user = User.objects.create(email="edith@example.com")
+        list_ = List.objects.create()
+        list_.shared_with.add("edith@example.com")
+        list_in_db = List.objects.get(id=list_.id)
+        self.assertIn(user, list_in_db.shared_with.all())
+
+
+
+
